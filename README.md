@@ -22,4 +22,4 @@ Usage:
 ./aws-ec2-ami-backup-replica.sh <retentiondays> <profile>
 
   
-  A future version will also support the region
+A future version will also support the region
