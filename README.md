@@ -19,7 +19,7 @@ Requirements:
 
 Usage:
 
-<pre><code> ./aws-ec2-ami-backup-replica.sh <*retentiondays*> <*profile*> </code></pre>
+<pre><code> ./aws-ec2-ami-backup-replica.sh <retentiondays> <profile> </code></pre>
 
   
 A future version will also support the region
