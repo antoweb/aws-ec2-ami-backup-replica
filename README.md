@@ -2,7 +2,7 @@
 Shell script for backup ec2 with ami and cross region replica
 fork from https://github.com/pavlops/aws-ami-backups
 
-This script starts from the script of but has been improved in these points:
+This script starts from the script of https://github.com/pavlops/aws-ami-backups but has been improved in these points:
 
 1) Removed the InstanceId parameter and the Identifier parameter
 
