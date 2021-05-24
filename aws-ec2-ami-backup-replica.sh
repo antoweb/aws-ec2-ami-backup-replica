@@ -10,7 +10,6 @@
 # Website: https://github.com/pavlops
 # Usage: aws-ami-backup.sh <ec2-instance-id> <identifier> <retention days> <aws local profile>
 
-
 #Initialize variables
 currDate=$(date +%Y%m%d%H%M)
 #instanceId="$1"
