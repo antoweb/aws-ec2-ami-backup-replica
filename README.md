@@ -12,8 +12,8 @@ This script starts from the script of https://github.com/pavlops/aws-ami-backups
 
 Requirements:
 
-1) Ec2 must be in eu-west-1 or you have to change the line 111
-2) Replica is in eu-central-1 (or you must change line 111)
+1) ~~Ec2 must be in eu-west-1 or you have to change the line 111~~ Ec2 source region can be setup in variable $sourceregion
+2) Replica is in eu-central-1 ~~(or you must change line 111)~~ Ora chenga variable $destregion
 3) The server from which it is launched must have the aws profile configured
 4) Aws cli
 
