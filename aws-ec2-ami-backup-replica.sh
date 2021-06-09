@@ -17,6 +17,9 @@ currDate=$(date +%Y%m%d%H%M)
 maxret=$1
 profile=$2
 #name="*$instanceName auto*"
+destregion=eu-north-1
+sourceregion=eu-west-1
+
 
 #Empty temp files
 > /tmp/instancetobackup
@@ -108,5 +111,6 @@ jq -r '.ImageId' /tmp/amicreated > /tmp/amicreatedsingleline
 
 while read p; do
 imagename=$(aws ec2 describe-images --image-ids $p --query 'Images[*].[Name]' --output text --profile "$profile")
-aws ec2 copy-image --source-image-id "$p" --source-region eu-central-1 --region eu-west-1 --name "$imagename" --profile "$profile"
+aws ec2 copy-image --source-image-id "$p" --source-region "$sourceregion" --region "$destregion" --name "$imagename" --profile "$profile"
 done < /tmp/amicreatedsingleline
+
