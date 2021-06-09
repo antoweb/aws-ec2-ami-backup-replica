@@ -1,4 +1,4 @@
-# aws-ec2-ami-backup-replica
+# aws-ec2-ami-backup-replica (script aws-ec2-ami-backup-replica.sh)
 Shell script for backup ec2 with ami and cross region replica
 fork from https://github.com/pavlops/aws-ami-backups
 
@@ -28,3 +28,6 @@ UPDATE 09/06/2021
 - Added support for choosing regions in variable
 - Added search for instances with tag value backup_if_stopped True or true
 - Added deleting old images from destination region
+
+SCRIPT aws-ec2-ami-backup-REGION-replica.sh
+Same as before script but with possibility to choose source and destination region in parameter ($3 and $4)
