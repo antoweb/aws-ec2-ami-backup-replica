@@ -151,9 +151,9 @@ while read line; do
 done <<< "$result1d"
 
 
-#Create new AMI from the instance runing
+#Create new AMI from the instance running
 #running=$(aws ec2 describe-instances --filters Name=instance-state-name,Values=running --query "Reservations[*].Instances[*].InstanceId" --output text --profile "$profile")
-echo "Create new AMI from the instance runing"
+echo "Create new AMI from the instance running"
 
 aws ec2 describe-instances --filters Name=instance-state-name,Values=running --query "Reservations[*].Instances[*].{Instance:InstanceId,Name:Tags[?Key=='Name']|[0].Value}" --output text --profile "$profile" > /tmp/instancetobackup
 
