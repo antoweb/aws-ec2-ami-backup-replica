@@ -29,5 +29,6 @@ UPDATE 09/06/2021
 - Added search for instances with tag value backup_if_stopped True or true
 - Added deleting old images from destination region
 
-SCRIPT aws-ec2-ami-backup-REGION-replica.sh
+#SCRIPT aws-ec2-ami-backup-REGION-replica.sh
+
 Same as before script but with possibility to choose source and destination region in parameter ($3 and $4)
