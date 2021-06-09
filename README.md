@@ -25,5 +25,6 @@ Usage:
 A future version will also support the region
 
 UPDATE 09/06/2021
-Added support for choosing regions in variable
-Added search for instances with tag value backup_if_stopped True or true
+- Added support for choosing regions in variable
+- Added search for instances with tag value backup_if_stopped True or true
+- Added deleting old images from destionation region
