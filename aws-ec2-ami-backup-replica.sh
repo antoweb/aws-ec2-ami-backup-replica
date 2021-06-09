@@ -60,7 +60,7 @@ done <<< "$result"
 
 #List all stopped instances for retriving Instance Name
 
-aws ec2 describe-instances --filters "Name=instance-state-name,Values=stopped" "Name=tag:backup_if_stopped,Values=True" --query "Reservations[*].Instances[*].{Instance:InstanceId,Name:Tags[?Key=='Name']|[0].Value}" --output text --profile "$profile" > /tmp/instancesstoppedbackedup
+aws ec2 describe-instances --filters "Name=instance-state-name,Values=stopped" "Name=tag:backup_if_stopped,Values=True,true" --query "Reservations[*].Instances[*].{Instance:InstanceId,Name:Tags[?Key=='Name']|[0].Value}" --output text --profile "$profile" > /tmp/instancesstoppedbackedup
 
 #List all existing image for stopped instances
 while IFS=$'\t' read -r -a myArray1
@@ -99,7 +99,7 @@ done < /tmp/instancetobackup
 
 
 #Create new AMI for instances stopped and with tag backup_if_stopped=True
-aws ec2 describe-instances --filters "Name=instance-state-name,Values=stopped" "Name=tag:backup_if_stopped,Values=True" --query "Reservations[*].Instances[*].{Instance:InstanceId,Name:Tags[?Key=='Name']|[0].Value}" --output text --profile "$profile" > /tmp/instancestoppedtobackup
+aws ec2 describe-instances --filters "Name=instance-state-name,Values=stopped" "Name=tag:backup_if_stopped,Values=True,true" --query "Reservations[*].Instances[*].{Instance:InstanceId,Name:Tags[?Key=='Name']|[0].Value}" --output text --profile "$profile" > /tmp/instancestoppedtobackup
 
 while IFS=$'\t' read -r -a myArray
 do
