@@ -41,16 +41,14 @@ aws ec2 describe-instances --filters Name=instance-state-name,Values=running --q
         cat /tmp/instancesrunningbackedup_"$profile"_"$sourceregion"
 
 #List all existing image for running instances in source region
-echo "List all existing image for running instances in source region for $profile"
 while IFS=$'\t' read -r -a myArray
 do
+   echo "List all existing image for running instances in source region for $profile"
    result=$(aws ec2 describe-images --filters "Name=name,Values=*${myArray[1]} auto*" --query 'Images[*].{CreationDate:CreationDate,ImageId:ImageId}' --output text --profile "$profile" --region "$sourceregion" | sort -r)
-done < /tmp/instancesrunningbackedup_"$profile"_"$sourceregion"
-echo $result
-
+   echo $result
 #deleting old images of running instances in source region
-echo "deleting old images of running instances in source region for $profile"
 while read line; do
+   echo "deleting old images of running instances in source region for $profile"
   let i++
   if [ "$i" -gt "$maxret" ]; then
 
@@ -67,19 +65,23 @@ while read line; do
 
   fi
 done <<< "$result"
+unset i
+done < /tmp/instancesrunningbackedup_"$profile"_"$sourceregion"
+
+
+
 
 
 #List all existing image for running instances in destination region
-echo "List all existing image for running instances in destination region for $profile"
 while IFS=$'\t' read -r -a myArrayd
 do
-   resultd=$(aws ec2 describe-images --filters "Name=name,Values=*${myArrayd[1]} auto*" --query 'Images[*].{CreationDate:CreationDate,ImageId:ImageId}' --output text --profile "$profile" --region "$destregion" | sort -r)
-done < /tmp/instancesrunningbackedup_"$profile"_"$sourceregion"
+        echo "List all existing image for running instances in destination region for $profile"
+        resultd=$(aws ec2 describe-images --filters "Name=name,Values=*${myArrayd[1]} auto*" --query 'Images[*].{CreationDate:CreationDate,ImageId:ImageId}' --output text --profile "$profile" --region "$destregion" | sort -r)
 echo $resultd
-
 #deleting old images of running instances in destination region
-echo "deleting old images of running instances in destination region for $profile"
+
 while read line; do
+  echo "deleting old images of running instances in destination region for $profile"
   let id++
   if [ "$id" -gt "$maxret" ]; then
 
@@ -96,6 +98,9 @@ while read line; do
 
   fi
 done <<< "$resultd"
+unset id
+done < /tmp/instancesrunningbackedup_"$profile"_"$sourceregion"
+
 
 
 #List all stopped instances for retriving Instance Name
@@ -104,16 +109,16 @@ aws ec2 describe-instances --filters "Name=instance-state-name,Values=stopped" "
 
 
 #List all existing image for stopped instances in source region
-echo "List all existing image for stopped instances in source region"
+
 while IFS=$'\t' read -r -a myArray1
 do
-   result1=$(aws ec2 describe-images --filters "Name=name,Values=*${myArray1[1]} stopped auto*" --query 'Images[*].{CreationDate:CreationDate,ImageId:ImageId}' --output text --profile "$profile" --region "$sourceregion" | sort -r)
-done < /tmp/instancesstoppedbackedup_"$profile"_"$sourceregion"
-echo $result1
+        echo "List all existing image for stopped instances in source region"
+        result1=$(aws ec2 describe-images --filters "Name=name,Values=*${myArray1[1]} stopped auto*" --query 'Images[*].{CreationDate:CreationDate,ImageId:ImageId}' --output text --profile "$profile" --region "$sourceregion" | sort -r)
+        echo $result1
 
 #deleting old images of stopped instances in source region
-echo "deleting old images of stopped instances in source region for $profile"
 while read line; do
+  echo "deleting old images of stopped instances in source region for $profile"
   let i1++
   if [ "$i1" -gt "$maxret" ]; then
 
@@ -130,18 +135,23 @@ while read line; do
 
   fi
 done <<< "$result1"
+unset i1
+done < /tmp/instancesstoppedbackedup_"$profile"_"$sourceregion"
+
+
+
 
 #List all existing image for stopped instances in destination region
-echo "List all existing image for stopped instances in destination region for $profile"
+
 while IFS=$'\t' read -r -a myArray1d
 do
-   result1d=$(aws ec2 describe-images --filters "Name=name,Values=*${myArray1d[1]} stopped auto*" --query 'Images[*].{CreationDate:CreationDate,ImageId:ImageId}' --output text --profile "$profile" --region "$destregion" | sort -r)
-done < /tmp/instancesstoppedbackedup_"$profile"_"$sourceregion"
-echo $result1d
+        echo "List all existing image for stopped instances in destination region for $profile"
+        result1d=$(aws ec2 describe-images --filters "Name=name,Values=*${myArray1d[1]} stopped auto*" --query 'Images[*].{CreationDate:CreationDate,ImageId:ImageId}' --output text --profile "$profile" --region "$destregion" | sort -r)
+        echo $result1d
 
 #deleting old images of stopped instances in destination region
-echo "deleting old images of stopped instances in destination region for $profile"
 while read line; do
+  echo "deleting old images of stopped instances in destination region for $profile"
   let i1d++
   if [ "$i1d" -gt "$maxret" ]; then
 
@@ -158,6 +168,10 @@ while read line; do
 
   fi
 done <<< "$result1d"
+unset i1d
+done < /tmp/instancesstoppedbackedup_"$profile"_"$sourceregion"
+
+
 
 
 #Create new AMI from the instance running
