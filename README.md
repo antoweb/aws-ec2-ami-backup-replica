@@ -1,3 +1,6 @@
+PAYPAL DONTAION  
+[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.me/sistemistaitaliano/1)
+
 # aws-ec2-ami-backup-replica (script aws-ec2-ami-backup-replica.sh)
 Shell script for backup ec2 with ami and cross region replica
 fork from https://github.com/pavlops/aws-ami-backups
