@@ -1,5 +1,8 @@
 PAYPAL DONTAION  
-[![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.me/sistemistaitaliano/2)
+[![paypal](https://github.com/antoweb/DonateButtons/blob/master/Paypal-160.png?raw=true)](https://www.paypal.me/sistemistaitaliano/2)
+
+BUY ME A COFFEE DONATION
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://buymeacoffee.com/sistemistaita)
 
 # aws-ec2-ami-backup-replica (script aws-ec2-ami-backup-replica.sh)
 Shell script for backup ec2 with ami and cross region replica
